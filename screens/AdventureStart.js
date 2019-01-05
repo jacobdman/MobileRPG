@@ -13,7 +13,6 @@ export default class AdventureStart extends React.Component {
       <View style={[styles.container, {flex: 1}]}>
         <View style={[styles.container, {flex: 3}]}>
           <RSEHandwritingPi style={styles.welcome}>Welcome Adventurer</RSEHandwritingPi>
-          {console.log(this.props.navigation)}
           <Button
             onPress={() => this.props.navigation.navigate('CharacterCreation')}
             title={"Start Adventure"}

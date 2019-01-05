@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
   text: {
     color: '#fff',
     marginBottom: 10,
-    fontFamily: "Didot-Italic",
     fontSize: 15,
   },
 });
