@@ -16,4 +16,9 @@ Install the Expo CLI command line utility
 npm install -g expo-cli
 ```
 
+And finally install all dependencies
+```
+npm i
+```
+
 cd into the directory and run ```npm start``` to start the Expo Environment
