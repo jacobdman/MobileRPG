@@ -32,6 +32,7 @@ export default class App extends React.Component {
       Font.loadAsync({
         'Mulder': require('./assets/fonts/MuldersHandwriting.ttf'),
         'RSEHandwritingPi': require('./assets/fonts/RSEHandwritingPi.ttf'),
+        'PerfectDos': require('./assets/fonts/PerfectDOSVGA437.ttf'),
       }),
     ]);
   };

@@ -2,7 +2,7 @@ import React from 'react';
 import { createSwitchNavigator } from 'react-navigation';
 
 import AdventureStart from '../screens/AdventureStart';
-import CharacterCreation from '../screens/CharacterCreation';
+import CharacterCreation from '../screens/CharacterCreation/CharacterCreation';
 import CharacterStats from '../screens/CharacterStats';
 
 export default createSwitchNavigator({
