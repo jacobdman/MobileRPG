@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {StyleSheet, TextInput, View, Button, TouchableHighlight} from 'react-native';
-import CharacterStore from '../../stores/CharacterStore'
 import { PerfectDos } from '../../components/StyledText';
 
 class CharacterCreationPageOne extends Component {
@@ -20,8 +19,18 @@ class CharacterCreationPageOne extends Component {
     this.setState({ chosenRaceIndex: id, raceObject: characterRace })
   }
 
+  completePageOne = () => {
+    this.props.completePageOne(this.state.chosenClassIndex, this.state.chosenRaceIndex)
+  }
+
+  componentDidMount = () => {
+    let randomClassIndex = Math.floor(Math.random() * 9)
+    let randomRaceIndex = Math.floor(Math.random() * 6)
+    this.setState({ chosenClassIndex: randomClassIndex, classObject: this.props.characterClasses[randomClassIndex], chosenRaceIndex: randomRaceIndex, raceObject: this.props.characterRaces[randomRaceIndex] })
+  }
+
   render() {
-    const { characterClasses, characterRaces } = CharacterStore;
+    const { characterClasses, characterRaces } = this.props;
     const { chosenClassIndex, chosenRaceIndex, classObject, raceObject } = this.state;
     return (
       <View style={styles.borderContainer}>
@@ -87,7 +96,7 @@ class CharacterCreationPageOne extends Component {
                     key={characterRaces.indexOf(characterRace)}
                     onPress={() => this.handleChangeRace(characterRace, characterRaces.indexOf(characterRace))}
                     value={characterRaces.indexOf(characterRace)}
-                    style={chosenRaceIndex === characterRaces.indexOf(characterRace) ? [styles.button, {backgroundColor: '#707070'}]: [styles.button, {backgroundColor: 'transparent'}]}
+                    style={chosenRaceIndex === characterRaces.indexOf(characterRace) ? {backgroundColor: '#707070'} : {backgroundColor: 'transparent'}}
                     underlayColor="#707070"
                   >
                     <PerfectDos style={styles.buttonText}>{characterRace.name}</PerfectDos>
@@ -102,7 +111,7 @@ class CharacterCreationPageOne extends Component {
                     key={characterRaces.indexOf(characterRace)}
                     onPress={() => this.handleChangeRace(characterRace, characterRaces.indexOf(characterRace))}
                     value={characterRaces.indexOf(characterRace)}
-                    style={chosenRaceIndex === characterRaces.indexOf(characterRace) ? [styles.button, {backgroundColor: '#707070'}]: [styles.button, {backgroundColor: 'transparent'}]}
+                    style={chosenRaceIndex === characterRaces.indexOf(characterRace) ? {backgroundColor: '#707070'} : {backgroundColor: 'transparent'}}
                     underlayColor="#707070"
                   >
                     <PerfectDos style={styles.buttonText}>{characterRace.name}</PerfectDos>
@@ -118,7 +127,7 @@ class CharacterCreationPageOne extends Component {
         <View style={{margin: 5}}></View>
         <View style={{flex: 0.3, justifyContent: 'space-around'}}>
           <Button
-            onPress={() => this.props.navigation.navigate('Main')}
+            onPress={() => this.completePageOne()}
             title="Next"
             color="white"
           />
