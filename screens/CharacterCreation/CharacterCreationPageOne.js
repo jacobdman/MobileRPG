@@ -30,6 +30,7 @@ class CharacterCreationPageOne extends Component {
           placeholder="Character Name"
           placeholderTextColor='white'
           maxLength={25}
+          autoCorrect={false}
           onChangeText={(text) => this.setState({ chosenName: text})}
         />
         <View style={{margin: 5}}></View>
