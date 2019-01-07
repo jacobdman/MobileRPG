@@ -84,7 +84,7 @@ class CharacterCreationPageOne extends Component {
           </View>
         </View>
         <View style={{margin: 5}}></View>
-        <View style={[styles.borderBox, {flex: 2}]}>
+        <View style={[styles.borderBox, {flex: 3}]}>
           <View style={{flex: 1, justifyContent: 'space-evenly'}}>
             <PerfectDos style={styles.buttonText}>Choose a Race</PerfectDos>
           </View>
