@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button, Alert} from 'react-native';
-
-import { RSEHandwritingPi } from '../components/StyledText';
+import { PerfectDos } from '../../components/StyledText';
 
 export default class AdventureStart extends React.Component {
   static navigationOptions = {
@@ -12,7 +11,7 @@ export default class AdventureStart extends React.Component {
     return (
       <View style={[styles.container, {flex: 1}]}>
         <View style={[styles.container, {flex: 3}]}>
-          <RSEHandwritingPi style={styles.welcome}>Welcome Adventurer</RSEHandwritingPi>
+          <PerfectDos style={styles.welcome}>Welcome Adventurer</PerfectDos>
           <Button
             onPress={() => this.props.navigation.navigate('CharacterCreation')}
             title={"Start Adventure"}
