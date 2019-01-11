@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, Alert} from 'react-native';
-import { PerfectDos } from '../../components/StyledText';
+import {StyleSheet, Text, View, Button} from 'react-native';
+import { PerfectDos } from '../components/StyledText';
 
 export default class AdventureStart extends React.Component {
   static navigationOptions = {

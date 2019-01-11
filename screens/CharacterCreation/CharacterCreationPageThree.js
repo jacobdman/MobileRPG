@@ -65,7 +65,7 @@ class CharacterCreationPageThree extends Component {
           </View>
           {stats.map(((stat, i) => {
             return (
-              <View style={{ flex: 1.5, flexDirection: 'row', justifyContent: 'space-between', width: '100%', margin: 5}}>
+              <View key={i} style={{ flex: 1.5, flexDirection: 'row', justifyContent: 'space-between', width: '100%', margin: 5}}>
                 <View style={styles.statBox}>
                   <PerfectDos style={styles.buttonText}>{stat.shortName}</PerfectDos>
                   <PerfectDos style={styles.buttonText}>{stat.value}</PerfectDos>
