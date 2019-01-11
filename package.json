@@ -1,4 +1,5 @@
 {
+  "main": "node_modules/expo/AppEntry.js",
   "name": "mobilerpg",
   "description": "Eh.. The names not a keeper. <br> Trello: https://trello.com/b/a0w5QjcG/mobile-rpg <br> React-Native Documentation: https://facebook.github.io/react-native/",
   "version": "1.0.0",
