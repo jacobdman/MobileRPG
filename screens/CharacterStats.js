@@ -1,19 +1,16 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 class CharacterStats extends Component {
-  constructor () {
-    super()
-    this.state = {
-
-    };
-  };
+  constructor() {
+    super();
+    this.state = {};
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.borderContainer}>
-        </View>
+        <View style={styles.borderContainer} />
       </View>
     );
   }

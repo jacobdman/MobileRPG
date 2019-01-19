@@ -19,7 +19,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "node ./node_modules/jest/bin/jest.js --watchAll"
+    "test": "node ./node_modules/jest/bin/jest.js --watchAll",
+    "lint": "eslint --quiet ./src/**/**/*.js",
+    "lint:fix": "eslint --fix ./src/**/**/*.js"
   },
   "jest": {
     "preset": "jest-expo"
@@ -30,13 +32,29 @@
     "lodash": "^4.17.11",
     "mobx": "^5.8.0",
     "react": "16.5.0",
+    "react-game-kit": "^1.0.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
-    "react-native-game-engine": "^0.10.1",
     "react-navigation": "^2.18.2"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
   "devDependencies": {
+    "babel-eslint": "^9.0.0",
     "babel-preset-expo": "^5.0.0",
-    "jest-expo": "^31.0.0"
+    "eslint": "^5.12.0",
+    "eslint-config-react-app": "^3.0.6",
+    "eslint-plugin-flowtype": "^2.50.3",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.12.4",
+    "jest-expo": "^31.0.0",
+    "lint-staged": "^7.1.3",
+    "prettier": "^1.15.3"
   },
   "requires": true
 }

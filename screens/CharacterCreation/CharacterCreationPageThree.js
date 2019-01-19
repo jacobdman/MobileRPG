@@ -1,31 +1,31 @@
-import React, {Component} from 'react';
-import {StyleSheet, View, Button, TouchableHighlight} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, Button, TouchableHighlight } from 'react-native';
 import { PerfectDos } from '../../components/StyledText';
 
 class CharacterCreationPageThree extends Component {
   state = {
     stats: [
-      {name: 'Strength', shortName: 'STR', value: 1,},
-      {name: 'Dexterity', shortName: 'DEX', value: 1,},
-      {name: 'Constitution', shortName: 'CON', value: 1,},
-      {name: 'Intelligence', shortName: 'INT', value: 1,},
-      {name: 'Wisdom', shortName: 'WIS', value: 1,},
-      {name: 'Charisma', shortName: 'CHA', value: 1,},
+      { name: 'Strength', shortName: 'STR', value: 1 },
+      { name: 'Dexterity', shortName: 'DEX', value: 1 },
+      { name: 'Constitution', shortName: 'CON', value: 1 },
+      { name: 'Intelligence', shortName: 'INT', value: 1 },
+      { name: 'Wisdom', shortName: 'WIS', value: 1 },
+      { name: 'Charisma', shortName: 'CHA', value: 1 },
     ],
     points: 10,
     error: false,
-  }
+  };
 
-  handleChangeSkin = (skinId) => {
+  handleChangeSkin = skinId => {
     this.setState({ chosenSkin: skinId });
   };
 
   completePageThree = () => {
     if (this.state.points === 0) {
       this.props.completePageThree(this.state.stats);
-      this.setState({ error: false })
+      this.setState({ error: false });
     } else {
-      this.setState({ error: true })
+      this.setState({ error: true });
     }
   };
 
@@ -33,23 +33,23 @@ class CharacterCreationPageThree extends Component {
     this.props.previousPage();
   };
 
-  lowerStat = (i) => {
+  lowerStat = i => {
     let stats = this.state.stats;
     let points = this.state.points;
     if (stats[i].value >= 2) {
       stats[i].value = stats[i].value - 1;
-      points = points + 1
-      this.setState({ stats, points })
+      points = points + 1;
+      this.setState({ stats, points });
     }
   };
 
-  raiseStat = (i) => {
+  raiseStat = i => {
     let stats = this.state.stats;
     let points = this.state.points;
     if (points >= 1) {
       stats[i].value = stats[i].value + 1;
-      points = points - 1
-      this.setState({ stats, points })
+      points = points - 1;
+      this.setState({ stats, points });
     }
   };
 
@@ -58,41 +58,75 @@ class CharacterCreationPageThree extends Component {
     const { stats, points, error } = this.state;
     return (
       <View style={[styles.borderContainer]}>
-        <PerfectDos style={[styles.buttonText, {flex: 0.5}]}>Assign Character Stats</PerfectDos>
-        <View style={[styles.borderBox, {flex: 8}]}>
-          <View style={{flex: 3, justifyContent: 'space-evenly', padding: 10}}>
-            <PerfectDos style={styles.descriptionText}>Assign your characters stats. For {chosenClass.name}, it is recommend you prioritize {chosenClass.priorityStat}</PerfectDos>
+        <PerfectDos style={[styles.buttonText, { flex: 0.5 }]}>
+          Assign Character Stats
+        </PerfectDos>
+        <View style={[styles.borderBox, { flex: 8 }]}>
+          <View
+            style={{ flex: 3, justifyContent: 'space-evenly', padding: 10 }}
+          >
+            <PerfectDos style={styles.descriptionText}>
+              Assign your characters stats. For {chosenClass.name}, it is
+              recommend you prioritize {chosenClass.priorityStat}
+            </PerfectDos>
           </View>
-          {stats.map(((stat, i) => {
+          {stats.map((stat, i) => {
             return (
-              <View key={i} style={{ flex: 1.5, flexDirection: 'row', justifyContent: 'space-between', width: '100%', margin: 5}}>
+              <View
+                key={i}
+                style={{
+                  flex: 1.5,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                  margin: 5,
+                }}
+              >
                 <View style={styles.statBox}>
-                  <PerfectDos style={styles.buttonText}>{stat.shortName}</PerfectDos>
-                  <PerfectDos style={styles.buttonText}>{stat.value}</PerfectDos>
+                  <PerfectDos style={styles.buttonText}>
+                    {stat.shortName}
+                  </PerfectDos>
+                  <PerfectDos style={styles.buttonText}>
+                    {stat.value}
+                  </PerfectDos>
                 </View>
-                <View style={{flexDirection: 'row', justifyContent: 'space-between', width: '30%'}}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    width: '30%',
+                  }}
+                >
                   <TouchableHighlight
                     onPress={() => this.lowerStat(i)}
                     underlayColor="#707070"
                   >
-                    <PerfectDos style={styles.directionButton}>{'-'}</PerfectDos>
+                    <PerfectDos style={styles.directionButton}>
+                      {'-'}
+                    </PerfectDos>
                   </TouchableHighlight>
                   <TouchableHighlight
                     onPress={() => this.raiseStat(i)}
                     underlayColor="#707070"
                   >
-                    <PerfectDos style={styles.directionButton}>{'+'}</PerfectDos>
+                    <PerfectDos style={styles.directionButton}>
+                      {'+'}
+                    </PerfectDos>
                   </TouchableHighlight>
                 </View>
               </View>
-            )
-          }))}
-          <View style={{flex: 0.5, justifyContent: 'space-evenly', padding: 10}}>
-            <PerfectDos style={styles.descriptionText}>Points left: { points }</PerfectDos>
+            );
+          })}
+          <View
+            style={{ flex: 0.5, justifyContent: 'space-evenly', padding: 10 }}
+          >
+            <PerfectDos style={styles.descriptionText}>
+              Points left: {points}
+            </PerfectDos>
           </View>
         </View>
-        <View style={{margin: 5}}></View>
-        <View style={{flex: 0.5, flexDirection: 'row'}}>
+        <View style={{ margin: 5 }} />
+        <View style={{ flex: 0.5, flexDirection: 'row' }}>
           <Button
             onPress={() => this.previousPage()}
             title="Back"
@@ -104,8 +138,10 @@ class CharacterCreationPageThree extends Component {
             color="white"
           />
         </View>
-        <View style={error ? styles.error : {display: 'none'}}>
-          <PerfectDos style={[styles.descriptionText, {color: 'red'}]}>Points left: { points }</PerfectDos>
+        <View style={error ? styles.error : { display: 'none' }}>
+          <PerfectDos style={[styles.descriptionText, { color: 'red' }]}>
+            Points left: {points}
+          </PerfectDos>
         </View>
       </View>
     );
@@ -157,5 +193,5 @@ const styles = StyleSheet.create({
   },
   error: {
     flex: 0.5,
-  }
+  },
 });

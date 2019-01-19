@@ -1,41 +1,48 @@
-import React, {Component} from 'react';
-import {StyleSheet, View, Button, TouchableHighlight} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, Button, TouchableHighlight } from 'react-native';
 import { PerfectDos } from '../../components/StyledText';
 
 class CharacterCreationPageTwo extends Component {
   state = {
-    chosenSkin: ''
-  }
+    chosenSkin: '',
+  };
 
-  handleChangeSkin = (skinId) => {
+  handleChangeSkin = skinId => {
     this.setState({ chosenSkin: skinId });
-  }
+  };
 
   completePageTwo = () => {
     this.props.completePageTwo(this.state.skinId);
-  }
+  };
 
   previousPage = () => {
     this.props.previousPage();
-  }
+  };
 
   previousSkin = () => {
     //Cycle between skins
-  }
+  };
 
   nextSkin = () => {
     //Cycle between skins
-  }
+  };
 
   render() {
     return (
       <View style={[styles.borderContainer]}>
-        <PerfectDos style={[styles.buttonText, {flex: 0.5}]}>Choose a Skin</PerfectDos>
-        <View style={[styles.borderBox, {flex: 8}]}>
-          <View style={{flex: 9}}>
-            {/* Character image goes here */}
-          </View>
-          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', width: '70%'}}>
+        <PerfectDos style={[styles.buttonText, { flex: 0.5 }]}>
+          Choose a Skin
+        </PerfectDos>
+        <View style={[styles.borderBox, { flex: 8 }]}>
+          <View style={{ flex: 9 }}>{/* Character image goes here */}</View>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              width: '70%',
+            }}
+          >
             <TouchableHighlight
               onPress={() => this.previousSkin()}
               // style={styles.directionButton}
@@ -52,8 +59,8 @@ class CharacterCreationPageTwo extends Component {
             </TouchableHighlight>
           </View>
         </View>
-        <View style={{margin: 5}}></View>
-        <View style={{flex: 0.5, flexDirection: 'row'}}>
+        <View style={{ margin: 5 }} />
+        <View style={{ flex: 0.5, flexDirection: 'row' }}>
           <Button
             onPress={() => this.previousPage()}
             title="Back"

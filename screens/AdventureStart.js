@@ -1,20 +1,20 @@
-import React from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { PerfectDos } from '../components/StyledText';
 
-export default class AdventureStart extends React.Component {
+export default class AdventureStart extends Component {
   static navigationOptions = {
     header: null,
   };
 
   render() {
     return (
-      <View style={[styles.container, {flex: 1}]}>
-        <View style={[styles.container, {flex: 3}]}>
+      <View style={[styles.container, { flex: 1 }]}>
+        <View style={[styles.container, { flex: 3 }]}>
           <PerfectDos style={styles.welcome}>Welcome Adventurer</PerfectDos>
           <Button
             onPress={() => this.props.navigation.navigate('CharacterCreation')}
-            title={"Start Adventure"}
+            title={'Start Adventure'}
           />
         </View>
       </View>
