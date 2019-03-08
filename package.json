@@ -31,9 +31,11 @@
     "expo": "^31.0.2",
     "lodash": "^4.17.11",
     "mobx": "^5.8.0",
+    "mobx-react": "^5.2.3",
     "react": "16.5.0",
     "react-game-kit": "^1.0.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
+    "react-native-typewriter": "^0.5.4",
     "react-navigation": "^2.18.2"
   },
   "lint-staged": {

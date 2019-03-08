@@ -2,6 +2,7 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Font } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
+import Background from './components/Background';
 
 export default class App extends React.Component {
   state = {
@@ -19,10 +20,12 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
-        </View>
+        <Background>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            <AppNavigator />
+          </View>
+        </Background>
       );
     }
   }
@@ -30,9 +33,8 @@ export default class App extends React.Component {
   loadResourcesAsync = async () => {
     return Promise.all([
       Font.loadAsync({
-        'Mulder': require('./assets/fonts/MuldersHandwriting.ttf'),
-        'RSEHandwritingPi': require('./assets/fonts/RSEHandwritingPi.ttf'),
-        'PerfectDos': require('./assets/fonts/PerfectDOSVGA437.ttf'),
+        Mulder: require('./assets/fonts/MuldersHandwriting.ttf'),
+        PerfectDos: require('./assets/fonts/PerfectDOSVGA437.ttf'),
       }),
     ]);
   };
@@ -51,6 +53,5 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
   },
 });

@@ -81,9 +81,6 @@ export default CharacterCreation;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
-    paddingTop: 40,
-    paddingBottom: 30,
     backgroundColor: '#353535',
     justifyContent: 'space-between',
   },
