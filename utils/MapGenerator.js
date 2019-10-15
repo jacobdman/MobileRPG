@@ -13,7 +13,7 @@ function MapGenerator(seed) {
   if (!seed) {
     seed = [];
     _.times(2, () => seed.push(_.random(1, 1000)));
-    _.times(27, () => seed.push(_.random(1, 99)));
+    _.times(20, () => seed.push(_.random(1, 99)));
   }
   //Assign the maps columns and rows based on the seed
   map.cols = seed[0];
@@ -47,23 +47,23 @@ function MapGenerator(seed) {
       city = _.inRange(seed[2], 21);
     }
   }
-  //Set city values
+  //Build a city!
   if (city) {
     city = {};
     var num = _.round(seed[2] % 10);
     if (num === 0 || num === 1 || num === 2) {
-      city.doorLocation = 'N';
+      city.entranceLocation = 'N';
     } else if (num === 3 || num === 4) {
-      city.doorLocation = 'E';
+      city.entranceLocation = 'S';
     } else if (num === 5 || num === 6 || num === 7) {
-      city.doorLocation = 'S';
+      city.entranceLocation = 'E';
     } else {
-      city.doorLocation = 'W';
+      city.entranceLocation = 'W';
     }
-    city.x = _.round(((map.cols - 25) * seed[5]) / 100);
-    city.y = _.round(((map.rows - 25) * seed[6]) / 100);
-    city.width = _.round(((map.cols - city.x) * seed[7]) / 100);
-    city.height = _.round(((map.rows - city.y) * seed[8]) / 100);
+    city.x = _.round(((map.cols - 25) * seed[3]) / 100);
+    city.y = _.round(((map.rows - 25) * seed[4]) / 100);
+    city.width = _.round(((map.cols - city.x) * seed[5]) / 100);
+    city.height = _.round(((map.rows - city.y) * seed[6]) / 100);
     city.area = city.width * city.height;
     //Fill horizontal walls
     map.mapArr.fill(
@@ -93,21 +93,128 @@ function MapGenerator(seed) {
     map.mapArr[
       city.x + city.width + map.cols * city.y + map.cols * city.height
     ] = 50;
-    if (city.doorLocation === 'N') {
-      map.mapArr[city.width / 2 + city.x] = 0;
-      map.mapArr[city.width / 2 + city.x - 1] = 39;
-      map.mapArr[city.width / 2 + city.x + 1] = 38;
+    let center = _.round(city.width / 2 + city.x + map.cols * city.y);
+    let verticalCenter = _.round(
+      (city.height / 2 + city.y) * map.cols + city.x
+    );
+    //Place City Entrances
+    if (city.entranceLocation === 'N') {
+      map.mapArr[center] = 0;
+      if (city.width > 300) {
+        map.mapArr[center - 1] = 0;
+        map.mapArr[center + 1] = 0;
+        map.mapArr[center - 2] = 0;
+        map.mapArr[center + 2] = 0;
+        map.mapArr[center - 3] = 0;
+        map.mapArr[center + 3] = 0;
+        map.mapArr[center - 4] = 39;
+        map.mapArr[center + 4] = 38;
+      } else if (city.width > 150) {
+        map.mapArr[center - 1] = 0;
+        map.mapArr[center + 1] = 0;
+        map.mapArr[center - 2] = 0;
+        map.mapArr[center + 2] = 0;
+        map.mapArr[center - 3] = 39;
+        map.mapArr[center + 3] = 38;
+      } else if (city.width > 50) {
+        map.mapArr[center - 1] = 0;
+        map.mapArr[center + 1] = 0;
+        map.mapArr[center - 2] = 39;
+        map.mapArr[center + 2] = 38;
+      } else {
+        map.mapArr[center - 1] = 39;
+        map.mapArr[center + 1] = 38;
+      }
+    } else if (city.entranceLocation === 'S') {
+      map.mapArr[center + city.height * map.cols] = 0;
+      if (city.width > 300) {
+        map.mapArr[center - 1 + city.height * map.cols] = 0;
+        map.mapArr[center + 1 + city.height * map.cols] = 0;
+        map.mapArr[center - 2 + city.height * map.cols] = 0;
+        map.mapArr[center + 2 + city.height * map.cols] = 0;
+        map.mapArr[center - 3 + city.height * map.cols] = 0;
+        map.mapArr[center + 3 + city.height * map.cols] = 0;
+        map.mapArr[center - 4 + city.height * map.cols] = 39;
+        map.mapArr[center + 4 + city.height * map.cols] = 38;
+      } else if (city.width > 150) {
+        map.mapArr[center - 1 + city.height * map.cols] = 0;
+        map.mapArr[center + 1 + city.height * map.cols] = 0;
+        map.mapArr[center - 2 + city.height * map.cols] = 0;
+        map.mapArr[center + 2 + city.height * map.cols] = 0;
+        map.mapArr[center - 3 + city.height * map.cols] = 39;
+        map.mapArr[center + 3 + city.height * map.cols] = 38;
+      } else if (city.width > 50) {
+        map.mapArr[center - 1 + city.height * map.cols] = 0;
+        map.mapArr[center + 1 + city.height * map.cols] = 0;
+        map.mapArr[center - 2 + city.height * map.cols] = 39;
+        map.mapArr[center + 2 + city.height * map.cols] = 38;
+      } else {
+        map.mapArr[center - 1 + city.height * map.cols] = 39;
+        map.mapArr[center + 1 + city.height * map.cols] = 38;
+      }
+    } else if (city.entranceLocation === 'W') {
+      map.mapArr[verticalCenter] = 0;
+      if (city.height > 300) {
+        map.mapArr[verticalCenter - map.cols] = 0;
+        map.mapArr[verticalCenter + map.cols] = 0;
+        map.mapArr[verticalCenter - map.cols] = 0;
+        map.mapArr[verticalCenter + map.cols] = 0;
+        map.mapArr[verticalCenter - map.cols] = 0;
+        map.mapArr[verticalCenter + map.cols] = 0;
+        map.mapArr[verticalCenter - map.cols] = 47;
+        map.mapArr[verticalCenter + map.cols] = 43;
+      } else if (city.height > 150) {
+        map.mapArr[verticalCenter - map.cols] = 0;
+        map.mapArr[verticalCenter + map.cols] = 0;
+        map.mapArr[verticalCenter - map.cols] = 0;
+        map.mapArr[verticalCenter + map.cols] = 0;
+        map.mapArr[verticalCenter - map.cols] = 47;
+        map.mapArr[verticalCenter + map.cols] = 43;
+      } else if (city.height > 50) {
+        map.mapArr[verticalCenter - map.cols] = 0;
+        map.mapArr[verticalCenter + map.cols] = 0;
+        map.mapArr[verticalCenter - map.cols] = 47;
+        map.mapArr[verticalCenter + map.cols] = 43;
+      } else {
+        map.mapArr[verticalCenter - map.cols] = 47;
+        map.mapArr[verticalCenter + map.cols] = 43;
+      }
+    } else if (city.entranceLocation === 'E') {
+      map.mapArr[verticalCenter] = 0;
+      if (city.height > 300) {
+        map.mapArr[verticalCenter - map.cols + city.width] = 0;
+        map.mapArr[verticalCenter + map.cols + city.width] = 0;
+        map.mapArr[verticalCenter - map.cols + city.width] = 0;
+        map.mapArr[verticalCenter + map.cols + city.width] = 0;
+        map.mapArr[verticalCenter - map.cols + city.width] = 0;
+        map.mapArr[verticalCenter + map.cols + city.width] = 0;
+        map.mapArr[verticalCenter - map.cols + city.width] = 47;
+        map.mapArr[verticalCenter + map.cols + city.width] = 43;
+      } else if (city.height > 150) {
+        map.mapArr[verticalCenter - map.cols + city.width] = 0;
+        map.mapArr[verticalCenter + map.cols + city.width] = 0;
+        map.mapArr[verticalCenter - map.cols + city.width] = 0;
+        map.mapArr[verticalCenter + map.cols + city.width] = 0;
+        map.mapArr[verticalCenter - map.cols + city.width] = 47;
+        map.mapArr[verticalCenter + map.cols + city.width] = 43;
+      } else if (city.height > 50) {
+        map.mapArr[verticalCenter - map.cols + city.width] = 0;
+        map.mapArr[verticalCenter + map.cols + city.width] = 0;
+        map.mapArr[verticalCenter - map.cols + city.width] = 47;
+        map.mapArr[verticalCenter + map.cols + city.width] = 43;
+      } else {
+        map.mapArr[verticalCenter - map.cols + city.width] = 47;
+        map.mapArr[verticalCenter + map.cols + city.width] = 43;
+      }
     }
-  }
-  console.log(
-    seed,
-    map.cols,
-    map.rows,
-    city,
-    map.mapArr[city.x + city.width / 2]
-  );
+    //Buildings
+    city.spacing = _.round(seed[7] / 10) ? _.round(seed[7] / 10) : 1;
+    let remainingArea = city.area - city.width * 2 - city.height * 2;
+    // asdf
+    console.log(seed, map.cols, map.rows, city, remainingArea);
 
-  return map;
+    return map;
+  }
 }
 
 export default MapGenerator;
@@ -120,26 +227,20 @@ export default MapGenerator;
 // 	4 - city y
 // 	5 - city height
 // 	6 - city width
-// 	7 - building height one
-// 	8 - building width one
-// 	9 - building height two
-// 	10 - building width two
-// 	11 - building height three
-// 	12 - building width three
-// 	13 - building location
-// 	14 - building location
-// 	15 - building location
-// 	16 - building location
-// 	17 - building location
-// 	18 - building location
-// 	19 - building location
-// 	20 - building location
-// 	21 - building order
-// 	22 - fauna
-// 	23 - fauna
-// 	24 - fauna
-// 	25 - dungeon count
-// 	26 - dungeon location
-// 	27 - dungeon location
-// 	28 - secret chest location
+//  7 - building spacing
+//  8 - building percentage
+// 	9 - building height one
+// 	10 - building width one
+// 	11 - building height two
+// 	12 - building width two
+// 	13 - building height three
+// 	14 - building width three
+// 	15 - building order
+// 	16 - fauna
+// 	17 - fauna
+// 	18 - fauna
+// 	19 - dungeon count
+// 	20 - dungeon location
+// 	21 - dungeon location
+// 	22 - secret chest location
 // }

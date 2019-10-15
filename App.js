@@ -1,6 +1,7 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { AppLoading, Font } from 'expo';
+import { AppLoading } from 'expo';
+import * as Font from 'expo-font';
 import AppNavigator from './navigation/AppNavigator';
 import Background from './components/Background';
 

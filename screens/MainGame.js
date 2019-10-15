@@ -11,7 +11,6 @@ class MainGame extends Component {
       <View style={styles.root}>
         <ScrollView
           horizontal
-          // pagingEnabled
           snapToAlignment="start"
           snapToInterval={3000}
           decelerationRate="fast"

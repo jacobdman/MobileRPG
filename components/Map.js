@@ -87,7 +87,9 @@ class Map extends Component {
               ]}
             >
               {MapStore.getTile(tile)}
-              <Text style={{ position: 'absolute', fontSize: 10 }}>{r * c}</Text>
+              <Text style={{ position: 'absolute', fontSize: 10 }}>
+                {r * c}
+              </Text>
             </TouchableOpacity>
           );
         }

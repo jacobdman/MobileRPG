@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 import GameStore from '../stores/GameStore';
 
 class Background extends Component {

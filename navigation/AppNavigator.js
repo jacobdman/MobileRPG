@@ -12,6 +12,7 @@ export default createSwitchNavigator({
   // Read more at https://reactnavigation.org/docs/en/auth-flow.html
   // Main: AdventureStart,
   // Main: TileStyling,
+  // Main: Tutorial,
   Main: MainGame,
   CharacterCreation: CharacterCreation,
   CharacterStats: CharacterStats,

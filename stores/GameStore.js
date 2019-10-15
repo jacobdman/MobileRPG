@@ -19,7 +19,7 @@ class GameStore {
     primary: '#353535',
     grid: 'rgba(53, 53, 53, 0.3)',
   };
-  color = this.darkColor;
+  color = this.gradientDemoColor;
   decisions = {};
   //****************Actions*****************************
   changeColor = (background = ['#353535', '#353535'], primary = '#fff') => {
